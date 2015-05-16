@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : PosicaoInicial.xml
+    Created on : 1 de Julho de 2006, 10:30
+    Author     : Alexandre Andrade
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+<class name="PosicaoInicial" table="posicaoInicial">
+
+<!-- Identificador da classe -->
+
+<id name="idPosicaoInicial" type="integer">
+<generator class="increment"/>
+</id>
+
+<!-- Propriedades da classe -->
+                                   
+<property name="XInicial"/>
+<property name="YInicial"/>
+<property name="QuantidadePosicao"/>
+
+<many-to-one 
+    name="agente"
+    class="Agente"
+    column="idAgente"/>
+
+</class>
+
+<query name="posicoesDoAgente">
+<![CDATA[from PosicaoInicial pi where idAgente = :idAgente order by YInicial desc, XInicial]]>
+</query>  
+</hibernate-mapping>

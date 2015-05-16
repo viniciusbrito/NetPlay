@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+    <class name="PercepcaoAvancado" table="percepcaoavancado">
+
+       <id name="idPercepcaoAvancado" type="java.lang.Integer">
+            <column name="idPercepcaoAvancado" />
+            <generator class="identity" />
+        </id>
+        
+        <property name="idCondicao" column="idCondicao"/>
+
+        <property name="idVariavel" column="idVariavel"/>
+
+        <property name="valor" type="string">
+            <column name="valor" length="255" not-null="false" />
+        </property>
+
+        <property name="agente" type="string">
+            <column name="agente" length="25" not-null="true" />
+        </property>
+
+    </class>
+
+    <query name="ListaPA">
+        <![CDATA[from PercepcaoAvancado a where a.idCondicao = :idCondicao]]>
+    </query>
+    <query name="ObterPA">
+        <![CDATA[from PercepcaoAvancado a where a.idPercepcaoAvancado = :idPercepcao]]>
+    </query> 
+</hibernate-mapping>

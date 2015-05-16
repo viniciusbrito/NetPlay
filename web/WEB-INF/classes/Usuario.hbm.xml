@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Usuario.hbm.xml
+    Created on : 19 de Abril de 2006, 14:15
+    Author     : Alexandre Andrade
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+<class name="Usuario"  table="usuario">
+
+<!-- Identificador da classe -->
+
+<id name="idUsuario" type="integer">
+<generator class="increment"/>
+</id>
+
+<!-- Propriedades da classe -->
+                                   
+<property name="nome" length="30"/>    
+<property name="sobrenome" length="30"/>
+<property name="email" length="255"/>
+<property name="login" length="20"/>
+<property name="senha" length="20"/>
+<property name="instituicao" length="100"/>
+<property name="areaInteresse" length="200"/>
+<property name="dtNascimento"/>
+<property name="sexo" length="1"/>
+
+<set name="modelos"
+     lazy = "true">
+    <key column="idUsuario"/>
+    <one-to-many class="Modelo"/>
+</set>
+
+</class>
+
+<!-- Queries da classe -->
+<query name="buscarPerfilPeloLogin">
+    <![CDATA[from Usuario u where u.login = :login]]>
+</query>
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+    <class name="PercepcaoCFT" table="percepcaocft">
+
+       <id name="idPercepcaoCFT" type="java.lang.Integer">
+            <column name="idPercepcaoCFT" />
+            <generator class="identity" />
+        </id>
+        
+        <property name="idCondicao" column="idCondicao"/>
+
+        <property name="var" type="string">
+            <column name="var" length="20" not-null="false" />
+        </property>
+        
+        <property name="valor" type="string">
+            <column name="valor" length="255" not-null="false" />
+        </property>
+
+        <property name="operador" type="string">
+            <column name="operador" length="25" not-null="false" />
+        </property>
+
+    </class>
+
+    <query name="ListaPCFT">
+        <![CDATA[from PercepcaoCFT a where a.idCondicao = :idCondicao]]>
+    </query>
+    <query name="ObterPCFT">
+        <![CDATA[from PercepcaoCFT a where a.idPercepcaoCFT = :idPercepcao]]>
+    </query> 
+</hibernate-mapping>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Texto.hbm.xml
+    Created on : 19 de Abril de 2006, 14:52
+    Author     : Alexandre Andrade
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+<class name="Texto" table="texto">
+
+<!-- Identificador da classe -->
+
+<id name="idTexto" type="integer">
+<generator class="increment"/>
+</id>
+
+<!-- Propriedades da classe -->
+                                   
+<property name="nome" length="30"/>    
+<property name="texto" length="200"/>
+
+<many-to-one 
+    name="modelo"
+    class="Modelo"
+    column="idModelo"/>
+
+</class>
+
+<query name="TextosDoModelo">
+    <![CDATA[from Texto t where t.nome = :nome and idModelo = :idModelo]]>
+</query>
+
+<query name="BuscarTextosDoModelo">
+    <![CDATA[from Texto t where idModelo = :idModelo order by t.nome]]>
+</query>
+
+<query name="BuscarTextoDoModelo">
+    <![CDATA[from Texto t where idModelo = :idModelo and t.nome = :nome]]>
+</query>
+
+</hibernate-mapping>

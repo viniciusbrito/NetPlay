@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : CorVariavelPlot.hbm.xml
+    Created on : 21 de Abril de 2006, 16:19
+    Author     : Alexandre Andrade
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+    <class name="CorVariavelPlot" table="corvariavelplot">
+
+        <!-- Identificador da classe -->
+
+        <id name="idCorVariavelPlot" type="integer">
+            <generator class="increment"/>
+        </id>
+
+        <!-- Propriedades da classe -->
+                                   
+        <property name="cor" length="20"/> 
+
+        <many-to-one 
+        name="plot"
+        class="Plot"
+        column="idPlot"/>
+
+        <many-to-one 
+        name="variavelvalor"
+        class="VariavelValor"
+        column="idVariavel"/>
+
+    </class>
+
+    <query name="VariavelGraficos">
+        <![CDATA[from CorVariavelPlot cvp where idVariavel = :idVariavel]]>
+    </query>  
+
+    <query name="CoresVariaveisGrafico">
+        <![CDATA[from CorVariavelPlot cvp where idPlot = :idPlot]]>
+    </query>  
+
+    <query name="ObterCorVariavelPlot">
+        <![CDATA[from CorVariavelPlot cvp where idCorVariavelPlot = :idCorVariavelPlot]]>
+    </query>  
+
+</hibernate-mapping>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Modelo.hbm.xml
+    Created on : 19 de Abril de 2006, 15:20
+    Author     : Alexandre Andrade
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+<class name="Modelo"  table="modelo">
+
+<!-- Identificador da classe -->
+
+<id name="idModelo" type="integer">
+<generator class="increment"/>
+</id>
+
+<!-- Propriedades da classe -->
+                                   
+<property name="nome" length="30"/>    
+<property name="descricao" length="200"/>
+<property name="dtCriacao"/>
+
+ <set name="textos"
+    inverse="true"
+    lazy = "true">    
+    <key column="idModelo"/>
+    <one-to-many class="Texto"/>
+</set>
+
+<set name="monitores"
+    inverse="true"
+    lazy = "true">    
+    <key column="idModelo"/>
+    <one-to-many class="Monitor"/>
+</set>
+
+<set name="modelosFilhos" 
+    inverse="true"
+    lazy = "true">
+    <key column="idModeloPai"/>
+    <one-to-many class="Modelo"/>
+</set>
+
+<set name="agentes"
+    inverse="true"
+    lazy = "true">    
+    <key column="idModelo"/>
+    <one-to-many class="Agente"/>
+</set>
+
+<set name="variaveis"
+    inverse="true"
+    lazy = "true">    
+    <key column="idModelo"/>
+    <one-to-many class="Variavel"/>
+</set>
+
+<set name="plots"
+    inverse="true"
+    lazy = "true">    
+    <key column="idModelo"/>
+    <one-to-many class="Plot"/>
+</set>
+
+<many-to-one 
+    name="usuario"
+    class="Usuario"
+    column="idUsuario"/>
+    
+<many-to-one 
+    name="modeloPai" 
+    class="Modelo"
+    column="idModeloPai"
+    not-null="false"/>   
+</class>
+
+<!-- Queries da classe -->
+<query name="buscarModeloPeloNome">
+    <![CDATA[from Modelo m where m.nome = :nome]]>
+</query>
+
+<query name="meusModelos">
+    <![CDATA[from Modelo m where idUsuario = :idUsuario order by m.nome]]>
+</query>
+
+<query name="todosModelos">
+    <![CDATA[from Modelo m order by m.nome]]>
+</query>
+
+<query name="consultaModelos">
+    <![CDATA[from Modelo m where m.nome like :nome order by m.nome]]>
+</query>
+
+
+<query name="modelosFilhos">
+    <![CDATA[from Modelo m where idModeloPai = :idModelo]]>
+</query>
+
+<query name="buscarModeloPeloId">
+    <![CDATA[from Modelo m where m.idModelo = :id]]>
+</query>
+
+</hibernate-mapping>

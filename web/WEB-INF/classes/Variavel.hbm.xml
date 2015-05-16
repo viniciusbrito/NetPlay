@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Variavel.hbm.xml
+    Created on : 25 de Abril de 2006, 15:01
+    Author     : Alexandre Andrade
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+    <class name="Variavel" table="variavel">
+
+        <!-- Identificador da classe -->
+
+        <id name="idVariavel" type="integer">
+            <generator class="increment"/>
+        </id>
+
+        <!-- Propriedades da classe -->
+
+        <property name="nome" length="50"/>  
+        <property name="tipo" length="25"/> 
+
+        <many-to-one 
+        name="modelo"
+        class="Modelo"
+        column="idModelo"/>
+
+        <many-to-one 
+        name="agente"
+        class="Agente"
+        column="idAgente"
+        not-null="false"/>
+
+    </class> 
+
+    <!-- Queries da classe -->
+    <query name="buscarVariavelPeloNomeModelo">
+        <![CDATA[from Variavel v where v.nome = :nome and idModelo = :idModelo]]>
+    </query>
+
+    <query name="BuscarVariaveisDoModelo">
+        <![CDATA[from Variavel v where idModelo = :idModelo order by v.nome]]>
+    </query>
+
+    <query name="BuscarVariavelPeloId">
+    <![CDATA[from Variavel a where a.idVariavel = :idVariavel]]>
+    </query>
+    
+    <query name="BuscarVariavelDoModelo">
+        <![CDATA[from Variavel v where idModelo = :idModelo and v.nome = :nome]]>
+    </query>        
+
+    <query name="BuscarVariaveisDoAgente">
+        <![CDATA[from Variavel v where idAgente = :idAgente]]>
+    </query>        
+
+    <query name="BuscarVariaveisDoModeloPeloTipo">
+        <![CDATA[from Variavel v where idModelo = :idModelo and v.tipo= :tipo order by v.nome]]>
+    </query>    
+
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Posicionamento.xml
+    Created on : 5 de Junho de 2006, 15:12
+    Author     : Diego Velasco
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+    <joined-subclass name="Posicionamento" table="posicionamento" extends="Condicao">
+	
+        <key column="idCondicao"/>
+
+        <property name="expressao" length="255"/>
+        <property name="idAgentePrincipal"/>
+                
+        <many-to-one name="agente"
+        class="Agente"
+        column="idAgente"
+        cascade="save-update" unique="false"/>
+	
+    </joined-subclass>
+
+</hibernate-mapping>

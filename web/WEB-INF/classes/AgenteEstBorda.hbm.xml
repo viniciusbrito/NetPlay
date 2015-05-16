@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : AgenteEstBorda.hbm.xml
+    Created on : 21 de Abril de 2006, 14:53
+    Author     : Alexandre Andrade
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+	<joined-subclass name="AgenteEstBorda" table="agenteestborda" extends="Agente">
+	
+		<key column="idAgente"/>
+		
+		<property name="tamanho"/>
+	
+	</joined-subclass>
+
+</hibernate-mapping>

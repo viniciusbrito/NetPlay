@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+    <class name="InicializarAgente" table="inicializaragente">
+        <id name="idInicializarAgente" type="java.lang.Integer">
+            <column name="idInicializarAgente" />
+            <generator class="identity" />
+        </id>
+
+        <many-to-one name="agente"
+            class="Agente" 
+            column="idAgente"
+            cascade="save-update" unique="false"/>
+        
+        <property name="quantidade" type="java.lang.Integer">
+            <column name="quantidade" length="11" not-null="true" />
+        </property>
+        
+        <property name="cor" type="java.lang.String">
+            <column name="cor" length="250" not-null="false" />
+        </property>
+        
+        <property name="forma" type="java.lang.String">
+            <column name="forma" length="250" not-null="false" />
+        </property>
+        
+        <property name="tamanho" type="java.lang.Integer">
+            <column name="tamanho" length="11" not-null="true" />
+        </property>
+        
+        <many-to-one 
+            name="modelo"
+            class="Modelo"
+            column="idModelo"/>
+        
+    </class>
+    <query name="BuscarIA">
+        <![CDATA[from InicializarAgente a where a.idInicializarAgente = :idIni]]>
+    </query>
+    
+    <query name="BuscarIAM">
+        <![CDATA[from InicializarAgente a where a.modelo = :idModelo]]>
+    </query>
+    
+    <query name="BuscarIAA">
+        <![CDATA[from InicializarAgente a where a.agente = :idAgente]]>
+    </query>
+</hibernate-mapping>

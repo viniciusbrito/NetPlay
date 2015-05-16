@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : PararMovimento.hbm.xml
+    Created on : 5 de Maio de 2007, 20:17
+    Author     : Lucio Barbiero
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+	<joined-subclass name="PararMovimento" table="pararmovimento"
+                extends="Acao">
+	
+		<key column="idAcao"/>
+
+                <many-to-one name="agenteMovel"
+                    class="AgenteMovel" 
+                    column="idAgenteMovel"
+                    cascade="save-update" unique="false"/>
+	
+	</joined-subclass>
+
+</hibernate-mapping>

@@ -1,0 +1,221 @@
+<%@ page contentType="text/html; charset=iso-8859-1" language="java" import="java.sql.*" errorPage="" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%
+    String status = "";
+
+    status = request.getParameter("status");
+    if (status == null) {
+        status = " ";
+    }
+%>
+
+<html>
+    <head>
+        <title>NetPlay</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <style type="text/css">
+            <!--
+            body,td,th {
+                font-size: 11px;
+                color: #DCE7DE;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+            }
+            body {
+                background-color: #FFFFFF;
+            }
+            a {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 12px;
+                color: #333300;
+            }
+            a:visited {
+                color: #DCE7DE;
+                text-decoration: none;
+            }
+            a:hover {
+                color: #A8C4AD;
+                text-decoration: none;
+            }
+            a:active {
+                color: #DCE7DE;
+                text-decoration: none;
+            }
+            a:link {
+                text-decoration: none;
+                color: #DCE7DE;
+                font-weight: bold;
+            }
+            h1 {
+                font-size: 0px;
+            }
+            h2 {
+                font-size: 1px;
+            }
+            h3 {
+                font-size: 2mm;
+            }
+            .style33 {
+                font-family: "Futura Md BT";
+                font-size: 50px;
+                color: #FFFFFF;
+            }
+            .style34 {color: #DCE7DE}
+            .style36 {
+                font-family: "Bauhaus 93", "Futura XBlk BT", "Abadi MT Condensed Extra Bold";
+                font-size: 45px;
+                color: #0000FF;
+            }
+            .style37 {color: #FFFFFF}
+            .style41 {color: #A8C4AD}
+            .style5 {color: #FF0000}
+            -->
+        </style>
+        <script language="JavaScript" type="text/JavaScript">
+            <!--
+            function MM_findObj(n, d) { //v4.01
+            var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+            d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+            if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+            for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+            if(!x && d.getElementById) x=d.getElementById(n); return x;
+            }
+
+            function MM_validateForm() { //v4.0
+            var i,p,q,nm,test,num,min,max,errors='',args=MM_validateForm.arguments;
+            for (i=0; i<(args.length-2); i+=3) { test=args[i+2]; val=MM_findObj(args[i]);
+            if (val) { nm=val.name; if ((val=val.value)!="") {
+            if (test.indexOf('isEmail')!=-1) { p=val.indexOf('@');
+            if (p<1 || p==(val.length-1)) errors+='- '+nm+' must contain an e-mail address.\n';
+            } else if (test!='R') { num = parseFloat(val);
+            if (isNaN(val)) errors+='- '+nm+' must contain a number.\n';
+            if (test.indexOf('inRange') != -1) { p=test.indexOf(':');
+            min=test.substring(8,p); max=test.substring(p+1);
+            if (num<min || max<num) errors+='- '+nm+' must contain a number between '+min+' and '+max+'.\n';
+            } } } else if (test.charAt(0) == 'R') errors += '- '+nm+ ' obrigatorio.\n'; }
+            } if (errors) alert(''+errors);
+            document.MM_returnValue = (errors == '');
+            }
+            //-->
+        </script>
+    </head>
+
+    <body>
+        <table width="100%" height="390" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#333300">
+            <tr>
+                <td valign="top">&nbsp;</td>
+                <td valign="top"><div align="center">
+                        <table width="100%" height="50" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="227"><div align="center" class="style33">NET<span class="style37">PLAY</span></div></td>
+                                <td width="515">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><div align="center">
+                                        <table width="100%" height="5" border="0" cellpadding="0" cellspacing="0" bgcolor="#DCE7DE">
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </div></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div align="center">
+                        <table width="750" border="0" cellpadding="0" cellspacing="0" bgcolor="#333300">
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                        <table width="100%" height="280" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#DCE7DE">
+                            <tr>
+                                <td height="281" valign="top"><div align="center">
+                                        <p>&nbsp;</p>
+                                        <table width="230" height="120" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#333300">
+                                            <tr>
+                                                <td height="121" valign="top"><div align="center">
+                                                        <form action="controlador.ControladorWeb" method="post" name="loginsenha" id="loginsenha" onSubmit="MM_validateForm('login', '', 'R', 'senha', '', 'R');
+                                                                return document.MM_returnValue">
+                                                            <table width="200" border="0" cellspacing="0" cellpadding="0">
+                                                                <tr>
+                                                                    <td colspan="4">&nbsp;</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td width="8"><div align="right"></div></td>
+                                                                    <td width="60"><div align="left">Login</div></td>
+                                                                    <td width="120"><div align="right">
+                                                                            <input name="login" type="text" id="login" size="20" maxlength="20">
+                                                                        </div></td>
+                                                                    <td width="12">&nbsp;</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td height="2" colspan="4">&nbsp;</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><div align="right"></div></td>
+                                                                    <td><div align="left">Senha</div></td>
+                                                                    <td><div align="right">
+                                                                            <input name="senha" type="password" id="senha" size="20" maxlength="20">
+                                                                        </div></td>
+                                                                    <td>&nbsp;</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4">&nbsp;</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2">
+                                                                        <input name="metodo" type="hidden" value = "logar" >
+                                                                    </td>
+                                                                    <td><div align="center">
+                                                                            <input name="entrar" type="submit" id="entrar" value="Entrar">
+                                                                        </div></td>
+                                                                    <td>&nbsp;</td>
+                                                                </tr>
+                                                            </table>
+                                                        </form>
+                                                    </div></td>
+                                            </tr>
+                                        </table>
+                                        <table width="200" height="17" border="0" align="center" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td height="17"><div align="center"><span class="style5"><%= status%></span>&nbsp;</div></td>
+                                            </tr>
+                                        </table>
+                                        <table width="265" height="82" border="0" align="center" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td colspan="2"><div align="center" class="style36 style37">
+                                                        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="265" height="40">
+                                                            <param name="movie" value="imagens/cadastre2.swf">
+                                                            <param name="quality" value="high">
+                                                            <embed src="imagens/cadastre2.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="265" height="40"></embed>
+                                                        </object> 
+                                                    </div></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="196">                        <div align="left"></div></td>
+                                                <td width="69" height="3">
+                                                    <div align="left"></div>                        <table width="50" height="20" border="0" cellpadding="0" cellspacing="0" bgcolor="#333300">
+                                                        <tr>
+                                                            <td bgcolor="#333300"><div align="center" class="style34"><a href="cadastro.jsp" class="style34">aqui</a></div></td>
+                                                        </tr>
+                                                    </table></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="16" colspan="2">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </div></td>
+                            </tr>
+                        </table>
+                    </div></td>
+                <td height="366" valign="top">&nbsp;</td>
+            </tr>
+            <tr>
+                <td valign="top">&nbsp;</td>
+                <td valign="top">&nbsp;</td>
+                <td height="16" valign="top">&nbsp;</td>
+            </tr>
+        </table>
+    </body>
+</html>

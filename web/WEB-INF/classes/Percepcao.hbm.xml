@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Percepcao.hbm.xml
+    Created on : 5 de Junho de 2006, 15:02
+    Author     : Diego Velasco
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+	<joined-subclass name="Percepcao" table="percepcao" extends="Condicao">
+	
+		<key column="idCondicao"/>
+
+		<property name="distancia"/>
+                <property name="idAgentePrincipal"/>
+                                            
+                <many-to-one name="agente"
+                    class="Agente" 
+                    column="idAgente"
+                    cascade="save-update" unique="false"/>
+                
+                <property name="modo"/>
+                
+	</joined-subclass>
+    <query name="ObterPercepcao">
+        <![CDATA[from Percepcao a where a.idCondicao = :idCondicao]]>
+    </query>
+</hibernate-mapping>

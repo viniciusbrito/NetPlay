@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ProjectExtensions-generated" basedir="..">
+  <target name="project-extension-init" depends="init">
+    <property file="extension/ExtensionProperties.properties" />
+  </target>
+  <target name="-pre-init-extension" depends="extension-library-variants" />
+  <target name="extension-library-variants">
+    <property name="libs.hib-jdbc-driver.jar.classpath" value="/home/diego/.netbeans/5.0/config/libraries/mm-mysql/mm-mysql-2.0.13-bin.jar" />
+  </target>
+</project>
+

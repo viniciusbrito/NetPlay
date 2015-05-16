@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : GerarNovoObjeto.hbm.xml
+    Created on : 8 de Junho de 2006, 21:21
+    Author     : Diego Velasco
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+	<joined-subclass name="GerarNovoObjeto" table="gerarnovoobjeto"
+            extends="Acao">
+	
+		<key column="idAcao"/>
+                
+                <property name="cor" column="cor" />
+                
+                <property name="forma" column="forma" />
+                
+                <property name="tamanho" column="tamanho" />
+                
+                <property name="posicao" column="posicao" />
+
+                <many-to-one name="agente"
+                    class="Agente" 
+                    column="idAgente"
+                    cascade="save-update" unique="false"/>
+	
+	</joined-subclass>
+    <query name="GerarNovoBuscar">
+        <![CDATA[from GerarNovoObjeto a where a.idAcao = :idAcao and a.agente = :idAgente]]>
+    </query>
+</hibernate-mapping>

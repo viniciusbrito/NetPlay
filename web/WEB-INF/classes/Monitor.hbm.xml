@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Monitor.hbm.xml
+    Created on : 19 de Abril de 2006, 14:49
+    Author     : Alexandre Andrade
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+<class name="Monitor" table="monitor">
+
+<!-- Identificador da classe -->
+
+<id name="idMonitor" type="integer">
+<generator class="increment"/>
+</id>
+
+<!-- Propriedades da classe -->
+                                   
+<property name="nome" length="50"/>    
+<property name="expressao" length="200"/>
+<property name="casasDecimais"/>
+
+
+<many-to-one 
+    name="modelo"
+    class="Modelo"
+    column="idModelo"/>
+
+</class>
+<query name="MonitoresDoModelo">
+    <![CDATA[from Monitor m where m.nome = :nome and idModelo = :idModelo]]>
+</query>
+
+<query name="BuscarMonitoresDoModelo">
+    <![CDATA[from Monitor m where idModelo = :idModelo order by m.nome]]>
+</query>
+
+<query name="BuscarMonitorDoModelo">
+    <![CDATA[from Monitor m where idModelo = :idModelo and m.nome = :nome]]>
+</query>
+
+</hibernate-mapping>

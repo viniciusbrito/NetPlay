@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : GernarNovoObjetoVariaveis.hbm.xml
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+    <class name="GerarNovoObjetoVariaveis" table="gerarnovoobjetovariaveis">
+        <id name="idGerar" type="java.lang.Integer">
+            <column name="idGerar" />
+            <generator class="identity" />
+        </id>
+
+        <property name="idAcao" type="java.lang.Integer">
+            <column name="idAcao" length="11" not-null="true" />
+        </property>
+        
+        <property name="idVariavel" type="java.lang.Integer">
+            <column name="idVariavel" length="11" not-null="true" />
+        </property>
+        
+        <property name="valor" type="string">
+            <column name="valor" length="200" not-null="true" />
+        </property>
+    </class>
+    
+    <query name="BuscarGerarNovo">
+        <![CDATA[from GerarNovoObjetoVariaveis a where a.idAcao = :idAcao and a.idVariavel = :idVar]]>
+    </query>    
+    
+        <query name="BuscarGerarNovoValor">
+        <![CDATA[select valor from GerarNovoObjetoVariaveis a where a.idAcao = :idAcao and a.idVariavel = :idVar]]>
+    </query>  
+</hibernate-mapping>

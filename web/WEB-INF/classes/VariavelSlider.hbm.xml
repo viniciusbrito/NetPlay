@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : VariavelSlider.hbm.xml
+    Created on : 21 de Abril de 2006, 15:13
+    Author     : Alexandre Andrade
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+    <joined-subclass name="VariavelSlider" table="variavelslider" extends="Variavel">
+
+            <key column="idVariavel"/>
+
+            <property name="valorInicial"/>
+            <property name="valorMaximo"/>
+            <property name="valorMinimo"/>
+            <property name="incremento"/>
+
+    </joined-subclass>
+    
+    <!-- Queries da classe -->
+    <query name="ObterVariavelSlider">
+        <![CDATA[from VariavelSlider v where v.idVariavel = :idVariavel]]>
+    </query>
+
+</hibernate-mapping>

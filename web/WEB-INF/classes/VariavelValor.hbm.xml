@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : VariavelValor.hbm.xml
+    Created on : 21 de Abril de 2006, 15:13
+    Author     : Alexandre Andrade
+    Description:
+    
+    Editado por: Vinicius Fernandes 29 de Outubro de 2014
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+    <joined-subclass name="VariavelValor" table="variavelvalor" extends="Variavel">
+	
+        <key column="idVariavel"/>
+		
+        <property name="valor" length="200"/>
+        
+        <property name="valorCriacao" length="200"/>
+
+        <set name="coresvariaveisplot"
+            inverse="true">    
+            <key column="idVarivel"/>
+            <one-to-many class="CorVariavelPlot"/>
+        </set> 
+
+    </joined-subclass>
+        
+</hibernate-mapping>

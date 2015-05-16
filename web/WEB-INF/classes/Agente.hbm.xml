@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Agente.hbm.xml
+    Created on : 25 de Abril de 2006, 14:34
+    Author     : Alexandre Andrade
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+<class name="Agente" table="agente">
+
+<!-- Identificador da classe -->
+
+<id name="idAgente" type="integer">
+<generator class="increment"/>
+</id>
+
+<!-- Propriedades da classe -->
+
+<property name="nome" length="30"/>                                   
+<property name="cor" length="20"/> 
+<property name="tipo" length="25"/> 
+<property name="TipoPosicao" length="20"/>
+
+<many-to-one 
+    name="modelo"
+    class="Modelo"
+    column="idModelo"/>
+    
+<set name="variaveis"
+    inverse="true">    
+    <key column="idAgente"/>
+    <one-to-many class="Variavel"/>    
+</set>
+
+
+<set name="posicoesiniciais"
+inverse="true"
+lazy = "true">    
+<key column="idAgente"/>
+<one-to-many class="PosicaoInicial"/>
+</set>
+
+</class>
+
+<!-- Queries da classe -->
+<query name="buscarAgentePeloNome_Modelo">
+    <![CDATA[from Agente a where a.nome = :nome and idModelo = :idModelo]]>
+</query>
+
+<query name="BuscarAgentesDoModelo">
+    <![CDATA[from Agente a where idModelo = :idModelo order by a.nome]]>
+</query>
+
+<query name="BuscarAgentePeloId">
+    <![CDATA[from Agente a where a.idAgente = :idAgente]]>
+</query>
+
+<query name="BuscarAgenteDoModelo">
+    <![CDATA[from Agente a where a.nome = :nome and idModelo = :idModelo]]>
+</query>
+
+<query name="BuscarAgentesDoModeloPeloTipo">
+    <![CDATA[from Agente a where idModelo = :idModelo and a.tipo = :tipo]]>
+</query>
+
+</hibernate-mapping>

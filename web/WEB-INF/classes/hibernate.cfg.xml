@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!--
+    Document   : hibernate.cfg.xml
+    Created on : 25 de Abril de 2006, 16:11
+    Author     : Alexandre Andrade
+                 Diego Velasco
+    Description:
+        Purpose of the document follows.
+-->
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">
+org.hibernate.dialect.MySQLDialect
+</property>
+    <property name="hibernate.connection.driver_class">
+com.mysql.jdbc.Driver
+</property>
+    <property name="hibernate.connection.url">
+<!--    jdbc:mysql://200.137.66.20/pf -->
+
+        jdbc:mysql://localhost:3306/pf?requireSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8
+</property>
+    <property name="hibernate.connection.username">
+root
+</property>
+    <property name="hibernate.connection.password">
+root
+</property>
+    <!-- Condiguração do c3p0 -->
+    <property name="hibernate.c3p0.max_size">10</property>
+    <property name="hibernate.c3p0.min_size">2</property>
+    <property name="hibernate.c3p0.timeout">5000</property>
+    <property name="hibernate.c3p0.max_statements">10</property>
+    <property name="hibernate.c3p0.idle_test_period">3000</property>
+    <property name="hibernate.c3p0.acquire_increment">2</property>
+    <!-- Configurações de debug -->
+    <property name="show_sql">true</property>
+    <!-- <property name="hbm2ddl.auto">create</property> -->
+    <property name="hibernate.generate_statistics">true</property>
+    <property name="hibernate.use_sql_comments">true</property>
+    <mapping resource="Usuario.hbm.xml"/>
+    <mapping resource="Modelo.hbm.xml"/>
+    <mapping resource="Texto.hbm.xml"/>
+    <mapping resource="Monitor.hbm.xml"/>
+    <mapping resource="Variavel.hbm.xml"/>
+    <mapping resource="VariavelLogica.hbm.xml"/>
+    <mapping resource="VariavelSlider.hbm.xml"/>
+    <mapping resource="VariavelValor.hbm.xml"/>
+    <mapping resource="Agente.hbm.xml"/>
+    <mapping resource="AgenteEstAleatorio.hbm.xml"/>
+    <mapping resource="AgenteEstBorda.hbm.xml"/>
+    <mapping resource="CorVariavelPlot.hbm.xml"/>
+    <mapping resource="Plot.hbm.xml"/>
+    <mapping resource="PosicaoInicial.hbm.xml"/>
+    <mapping resource="AgenteMovel.hbm.xml"/>
+    <mapping resource="Composicao.hbm.xml"/>
+    <mapping resource="Condicao.hbm.xml"/>
+    <mapping resource="Acao.hbm.xml"/>
+    <mapping resource="CmpVariavel.hbm.xml"/>
+    <mapping resource="Percepcao.hbm.xml"/>
+    <mapping resource="Posicionamento.hbm.xml"/>
+    <mapping resource="ValorVariavel.hbm.xml"/>
+    <mapping resource="AlterarCor.hbm.xml"/>
+    <mapping resource="AlterarForma.hbm.xml"/>
+    <mapping resource="AlterarMovimento.hbm.xml"/>
+    <mapping resource="AlterarPosicao.hbm.xml"/>
+    <mapping resource="Destruir.hbm.xml"/>
+    <mapping resource="GerarNovoObjeto.hbm.xml"/>    
+    <mapping resource="IncrementarVariavel.hbm.xml"/>
+    <mapping resource="RecuperarValorVariavel.hbm.xml"/>
+    <mapping resource="CorAgente.hbm.xml"/>
+    <mapping resource="AnaliseGraficos.hbm.xml"/>
+    <mapping resource="PararMovimento.hbm.xml"/>
+    <mapping resource="GerarNovoObjetoVariaveis.hbm.xml"/>
+    <mapping resource="OcultarAgente.hbm.xml"/>
+    <mapping resource="MostrarAgente.hbm.xml"/>
+    <mapping resource="InicializarAgente.hbm.xml"/>
+    <mapping resource="InicializarAgenteVariaveis.hbm.xml"/>
+    <mapping resource="PercepcaoAvancado.hbm.xml"/>
+    <mapping resource="PercepcaoCFT.hbm.xml"/>
+    <mapping resource="AlterarTamanho.hbm.xml"/>
+    <mapping resource="Tamanho.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

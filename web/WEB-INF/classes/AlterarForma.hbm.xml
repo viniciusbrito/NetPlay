@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : AlterarForma.hbm.xml
+    Created on : 27 de Agosto de 2006, 08:26
+    Author     : Diego Velasco
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+	<joined-subclass name="AlterarForma" table="alterarforma"
+                extends="Acao">
+	
+		<key column="idAcao"/>
+
+		<property name="novaForma"/>
+               
+                <many-to-one name="agenteMovel"
+                    class="AgenteMovel" 
+                    column="idAgente"
+                    cascade="save-update" unique="false"/>
+	
+	</joined-subclass>
+
+</hibernate-mapping>

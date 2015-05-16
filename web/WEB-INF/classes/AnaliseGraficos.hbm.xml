@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : AnaliseGraficos.hbm.xml
+    Autor     : Lucio Marcos Barbiero
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+<class name="AnaliseGraficos"  table="analisegraficos">
+
+<!-- Identificador da classe -->
+
+<id name="idAnalise" type="integer">
+<generator class="increment"/>
+</id>
+
+<!-- Propriedades da classe -->
+                                   
+<property name="nomeArquivo" length="45"/>    
+<property name="dataCriacao"/>
+
+<many-to-one 
+    name="usuario"
+    class="Usuario"
+    column="idUsuario"/>
+    
+<many-to-one 
+    name="modelo" 
+    class="Modelo"
+    column="idModelo"/>  
+ 
+</class>
+
+</hibernate-mapping>

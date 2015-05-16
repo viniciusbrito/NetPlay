@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Condicao.hbm.xml
+    Created on : 5 de Junho de 2006, 14:54
+    Author     : Diego Velasco
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+    <class name="Condicao" table="condicao">
+
+        <!-- Identificador da classe -->
+        <id name="idCondicao" type="integer">
+            <generator class="increment"/>
+        </id>
+    
+        <!-- Propriedades da classe -->
+        <property name="tipo" length="25"/>
+    
+        <many-to-one 
+        name="composicao"
+        class="Composicao"
+        column="idComposicao"/>
+        
+    </class>
+    
+    <query name="BuscarCondicoesDaComposicao">
+        <![CDATA[from Condicao a where a.composicao = :idComposicao]]>
+    </query>
+    
+    <query name="BuscarCondicaoPeloId">
+        <![CDATA[from Condicao a where a.idCondicao = :idCondicao]]>
+    </query>
+
+</hibernate-mapping>
+

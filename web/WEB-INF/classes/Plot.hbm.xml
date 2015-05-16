@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Plot.hbm.xml
+    Created on : 19 de Abril de 2006, 14:52
+    Author     : Alexandre Andrade
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+<class name="Plot" table="plot">
+
+<!-- Identificador da classe -->
+
+<id name="idPlot" type="integer">
+<generator class="increment"/>
+</id>
+
+<!-- Propriedades da classe -->
+                                   
+<property name="nomeGrafico" length="50"/> 
+<property name="XMinimo"/> 
+<property name="XMaximo"/> 
+<property name="YMinimo"/> 
+<property name="YMaximo"/> 
+<property name="NomeEixoX" length="30"/>    
+<property name="NomeEixoY" length="30"/>
+<property name="Tipo" length="10"/>
+
+<many-to-one 
+    name="modelo"
+    class="Modelo"
+    column="idModelo"/>
+
+<set name="CoresVariaveisPlot"
+    inverse="true"
+    lazy = "true">    
+    <key column="idPlot"/>
+    <one-to-many class="CorVariavelPlot"/>
+</set>
+
+</class>
+
+<!-- Queries da classe -->
+<query name="BuscarPlotsDoModelo">
+    <![CDATA[from Plot p where idModelo = :idModelo order by p.nomeGrafico]]>
+</query>
+
+<query name="BuscarPlotDoModelo">
+    <![CDATA[from Plot p where idModelo = :idModelo and p.nomeGrafico = :nome]]>
+</query>
+
+<!--
+<sql-query name="teste">
+    <![CDATA[select a.nome from variavel a, corvariavelplot b where a.idVariavel = b.idVariavel and idPlot = :idPlot and b.idCorVariavelPlot = :idcvp]]>
+</sql-query>    -->
+
+</hibernate-mapping>

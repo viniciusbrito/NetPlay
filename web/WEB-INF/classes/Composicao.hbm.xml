@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Composicao.hbm.xml
+    Created on : 6 de Junho de 2006, 17:14
+    Author     : Diego Velasco
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+    <class name="Composicao" table="composicao">
+
+        <!-- Identificador da classe -->
+    
+        <id name="idComposicao" type="integer">
+            <generator class="increment"/>
+        </id>
+
+        <!-- Propriedades da classe -->
+    
+        <property name="nome" length="30"/>
+        <property name="operador" length="2"/>
+    
+        <set name="acoes" inverse="true" lazy="true">
+            <key column="idComposicao"/>
+            <one-to-many class="Acao"/>
+        </set>
+
+        <set name="condicoes" inverse="true" lazy = "true">    
+            <key column="idComposicao"/>
+            <one-to-many class="Condicao"/>
+        </set>        
+        
+        <many-to-one 
+        name="modelo"
+        class="Modelo"
+        column="idModelo"/>
+        
+        <property name="tipo" length="15"/>
+        
+    </class>
+    
+    <!-- Queries da classe -->
+    <query name="buscarComposicaoPeloNome_Modelo">
+        <![CDATA[from Composicao a where a.nome = :nome and idModelo = :idModelo]]>
+    </query>
+
+    <query name="BuscarComposicoesDoModelo">
+        <![CDATA[from Composicao a where idModelo = :idModelo order by a.idComposicao]]>
+    </query>
+
+    <query name="BuscarComposicaoPeloId">
+        <![CDATA[from Composicao a where a.idComposicao = :idComposicao]]>
+    </query>
+
+    <query name="BuscarComposicaoDoModelo">
+        <![CDATA[from Composicao a where a.nome = :nome and idModelo = :idModelo]]>
+    </query>
+    
+</hibernate-mapping>

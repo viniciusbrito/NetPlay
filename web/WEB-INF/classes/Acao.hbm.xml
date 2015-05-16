@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Acao.hbm.xml
+    Created on : 6 de Junho de 2006, 17:00
+    Author     : Diego Velasco
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+    <class name="Acao" table="acao">
+
+        <!-- Identificador da classe -->
+        <id name="idAcao" type="integer">
+            <generator class="increment"/>
+        </id>
+
+        <!-- Propriedades da classe -->
+        <property name="tipo" length="25"/>
+        
+        <many-to-one 
+        name="composicao"
+        class="Composicao"
+        column="idComposicao"/> 
+            
+    </class>
+
+    <query name="BuscarAcoesDaComposicao">
+        <![CDATA[from Acao a where a.composicao = :idComposicao]]>
+    </query>
+    
+    <query name="BuscarAcaoPeloId">
+        <![CDATA[from Acao a where a.idAcao = :idAcao]]>
+    </query>
+    
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cdp">
+
+    <joined-subclass name="Tamanho" table="tamanho" extends="Condicao">
+
+        <key column="idCondicao"/>
+
+        <property name="operador" type="java.lang.String">
+            <column name="operador" length="50" not-null="false" />
+        </property>
+        
+        <property name="valor" type="java.lang.Integer">
+            <column name="valor" length="11" not-null="true" />
+        </property>
+
+        <many-to-one name="agente"
+            class="Agente" 
+            column="idAgente"
+            cascade="save-update" unique="false"/>
+
+    </joined-subclass>
+
+</hibernate-mapping>
